@@ -5,8 +5,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 import json
 
-# Create your tests here.
-
 class ProductModelTest(TestCase):
     def setUp(self):
         self.product = Product.objects.create(
@@ -59,7 +57,6 @@ class ViewsTest(TestCase):
         self.assertEqual(data['products'][0]['name'], "Test Product")
 
     def test_buy_product(self):
-        # Принудительная аутентификация пользователя для тестов
         self.client.force_login(self.user)
         
         # Try to buy product
@@ -70,13 +67,11 @@ class ViewsTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         
-        # Обновляем пользователя из базы данных
         user = User.objects.get(id=self.user.id)
         # Check if product was added to user's products
         self.assertTrue(self.product in user.products.all())
 
     def test_profile(self):
-        # Принудительная аутентификация пользователя для тестов
         self.client.force_login(self.user)
         
         # Add product to user
