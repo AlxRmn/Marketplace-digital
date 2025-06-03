@@ -6,8 +6,6 @@ from django.http import JsonResponse, FileResponse
 from .models import Product
 import json
 
-# Create your views here.
-
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
